@@ -1,5 +1,6 @@
 #include "uop_msb.h"
 #include "elec241.h"
+#include <cstdint>
 //Define an instance of SPI - this is a SPI master device
 SPI spi(PA_7, PA_6, PA_5);      // Ordered as: mosi, miso, sclk could use forth parameter ssel
 
@@ -35,14 +36,29 @@ int main() {
     // Currently the inputs to the SPI recieve are left floating (see quartus files)
     uint16_t rx;
 
+    //int led_seq[4] = {0b11111111, 0b0, 0b01010101, 0b10101010};
+    int prev_rx = 0;
+    
     while(true)                 
     {
-        rx = spi_readwrite(0x00AA);     // Send binary 0000 0000 1010 1010
-        printf("Recieved: %u\n",rx);    // Display the value returned by the FPGA
-        wait_us(1000000);               // 
-        rx = spi_readwrite(0x0055);     // Send binary 0000 0000 0101 0101
-        printf("Recieved: %u\n",rx);    // Display the value returned by the FPGA
-        wait_us(1000000);               //
+        // rx = spi_readwrite(0x00AA);     // Send binary 0000 0000 1010 1010
+        // printf("Recieved: %u\n",rx);    // Display the value returned by the FPGA
+        // wait_us(1000000);               // 
+        // rx = spi_readwrite(0x0055);     // Send binary 0000 0000 0101 0101
+        // printf("Recieved: %u\n",rx);    // Display the value returned by the FPGA
+        // wait_us(1000000);               //
+
+                //CHALLENGE 1//
+        // for (int i = 0; i < 4; i++)
+        // {
+        //     rx = spi_readwrite(led_seq[i]);    
+        //     printf("Recieved: %u\n",rx);    
+        //     wait_us(1000000);              
+        // }
+
+                //CHALLENGE 2//
+        prev_rx = spi_readwrite(0b1 << prev_rx);
+        wait_us(10000); 
     }
 }
 
@@ -62,3 +78,4 @@ uint16_t spi_readwrite(uint16_t data) {
 	wait_us(1);
 	return rx;
 }
+
