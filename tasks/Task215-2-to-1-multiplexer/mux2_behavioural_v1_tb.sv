@@ -2,7 +2,7 @@ module mux2_behavioural_v1_tb;
 
 logic y1, aa, bb, ss;
 
-mux2_behavioural_v1 u1(y1, aa, bb, ss);
+mux2_structural u1(y1, aa, bb, ss);
 
 
 initial

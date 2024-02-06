@@ -5,6 +5,7 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
-vlog -sv -work work +incdir+C:/git/DigitalSystems/tasks/Task209-TestBench {C:/git/DigitalSystems/tasks/Task209-TestBench/uop_nxor.sv}
+vlog -sv -work work +incdir+Z:/GitHub/DigitalSystems/tasks/Task209-TestBench {Z:/GitHub/DigitalSystems/tasks/Task209-TestBench/comb_logic.v}
+vlog -sv -work work +incdir+Z:/GitHub/DigitalSystems/tasks/Task209-TestBench {Z:/GitHub/DigitalSystems/tasks/Task209-TestBench/uop_nxor.sv}
 
-do "C:/git/DigitalSystems/tasks/Task209-TestBench/simulation/modelsim/build_all_tests.do"
+do "Z:/GitHub/DigitalSystems/tasks/Task209-TestBench/simulation/modelsim/build_all_tests.do"
